@@ -22,10 +22,7 @@ class Vertex(object):
         Parameters:
         vertex_obj (Vertex): An instance of Vertex to be stored as a neighbor.
         """
-        if vertex_obj.get_id() in self.__neighbors_dict.keys():
-            return False # it's already a neighbor
-        self.__neighbors_dict[vertex_obj.get_id()] = vertex_obj
-        return True
+        pass
 
     def __str__(self):
         """Output the list of neighbors of this vertex."""
@@ -69,12 +66,7 @@ class Graph:
         Returns:
         Vertex: The new vertex object.
         """
-        if vertex_id in self.__vertex_dict:
-            return self.__vertex_dict[vertex_id] # it's already there
-        
-        vertex_obj = Vertex(vertex_id)
-        self.__vertex_dict[vertex_id] = vertex_obj
-        return vertex_obj
+        pass
         
 
     def get_vertex(self, vertex_id):
@@ -93,17 +85,7 @@ class Graph:
         vertex_id1 (string): The unique identifier of the first vertex.
         vertex_id2 (string): The unique identifier of the second vertex.
         """
-        all_ids = self.__vertex_dict.keys()
-        if vertex_id1 not in all_ids or vertex_id2 not in all_ids:
-            raise ValueError('Either vertex 1 or vertex 2 is not in the graph.')
-
-        vertex_obj1 = self.__vertex_dict[vertex_id1]
-        vertex_obj2 = self.__vertex_dict[vertex_id2]
-        vertex_obj1.add_neighbor(vertex_obj2)
-
-        # If the graph is directed, add an edge in the opposite direction.
-        if not self.__is_directed:
-            vertex_obj2.add_neighbor(vertex_obj1)
+        pass
         
     def get_vertices(self):
         """
@@ -123,7 +105,6 @@ class Graph:
 
     def __str__(self):
         """Return a string representation of the graph."""
-        graph_type = "Digraph" if self.__is_directed else "Graph"
         return f'Graph with vertices: {self.get_vertices()}'
 
     def __repr__(self):
@@ -218,28 +199,4 @@ class Graph:
         Returns:
         list<string>: All vertex ids that are `target_distance` away from the start vertex
         """
-        if not self.contains_id(start_id):
-            raise KeyError("One or both vertices are not in the graph!")
-
-        result_vertices = []
-        distances = {
-            start_id: 0
-        }
-        queue = deque() # queue of vertices to visit next
-        queue.append(self.get_vertex(start_id))
-
-        while queue: # while queue is not empty
-            current_vertex_obj = queue.pop() # vertex obj to visit next
-            current_vertex_id = current_vertex_obj.get_id()
-
-            if distances[current_vertex_id] == target_distance:
-                result_vertices.append(current_vertex_id)
-                continue
-
-            neighbors = current_vertex_obj.get_neighbors()
-            for neighbor in neighbors:
-                if neighbor.get_id() not in distances:
-                    distances[neighbor.get_id()] = distances[current_vertex_id] + 1
-                    queue.append(neighbor)
-        
-        return result_vertices
+        pass

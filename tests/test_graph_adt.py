@@ -4,8 +4,6 @@ from util.file_reader import read_graph_from_file
 
 
 class TestGraph(unittest.TestCase):
-    def setUp(self):
-        pass
 
     def test_create_directed_graph(self):
         """Create a graph."""
@@ -98,7 +96,7 @@ class TestReadGraphFromFile(unittest.TestCase):
 
         vertices_3_away = graph.find_vertices_n_away('A', 3)
         self.assertEqual(vertices_3_away, ['F'])
-        
+
 
 if __name__ == '__main__':
     unittest.main()

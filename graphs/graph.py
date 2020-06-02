@@ -53,7 +53,7 @@ class Graph:
         Parameters:
         is_directed (boolean): Whether the graph is directed (edges go in only one direction).
         """
-        self.__vertex_dict = {}
+        self.__vertex_dict = {} # id -> object
         self.__is_directed = is_directed
 
     def add_vertex(self, vertex_id):

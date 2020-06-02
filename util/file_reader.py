@@ -14,31 +14,16 @@ def read_graph_from_file(filename):
     vertices and edges
     """
 
-    graph = None
+    # TODO: Use 'open' to open the file
 
-    with open(filename, "r") as file:
-        lines = [line for line in file]
+    # TODO: Use the first line (G or D) to determine whether graph is directed 
+    # and create a graph object
 
-        # Handle first line
-        graph_type = lines[0].strip()
-        if graph_type == 'D':
-            graph = Graph(is_directed=True)
-        elif graph_type == 'G':
-            graph = Graph(is_directed=False)
-        else:
-            raise ValueError('Graph type not properly specified')
+    # TODO: Use the second line to add the vertices to the graph
 
-        # Add vertices
-        vertex_ids = lines[1].strip('\n ').split(',')
-        for vertex_id in vertex_ids:
-            graph.add_vertex(vertex_id)
+    # TODO: Use the 3rd+ line to add the edges to the graph
 
-        # Add edges
-        for line in lines[2:]:
-            [vertex_id1, vertex_id2] = line.strip('()\n ').split(',')
-            graph.add_edge(vertex_id1, vertex_id2)
-
-    return graph
+    pass
 
 if __name__ == '__main__':
 

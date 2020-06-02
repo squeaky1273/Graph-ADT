@@ -1,6 +1,6 @@
 # Homework 1: Graph ADT & Traversals
 
-Follow the instructions [here](http://localhost:3000/#/Assignments/01-Graph-ADT) to complete this assignment.
+Follow the instructions [here](https://make-school-courses.github.io/CS-2.2-Graphs-Recursion/#/Assignments/01-Graph-ADT) to complete this assignment.
 
 ## Discussion Questions
 

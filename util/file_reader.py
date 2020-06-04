@@ -16,7 +16,7 @@ def read_graph_from_file(filename):
 
     # TODO: Use 'open' to open the file
     f = open(filename)
-    read = f.read()
+    f.read()
 
     # TODO: Use the first line (G or D) to determine whether graph is directed 
     # and create a graph object

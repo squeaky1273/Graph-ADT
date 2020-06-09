@@ -199,21 +199,32 @@ class Graph:
         if not self.contains_id(start_id):
             raise KeyError("One or both vertices are not in the graph!")
 
-        starting_vertex = self.get_vertex(start_id)
-
+        # data type containing the vertex items
         queue = deque() 
-        queue.append(starting_vertex)
+        queue.append((start_id, 0))
 
+        # Take note of vetices that were already visited; don't visit again
+        visit = []
+        visit.append(start_id)
+        
+        # List of vertex items that are `target_distance` away from the start vertex
         vertex_target_list = []
 
+        # While searching through queue
         while queue:
             current_vertex_obj = queue.pop() # vertex obj to visit next
 
-            if current_vertex_obj == target_distance:
-                return current_vertex_obj
+            # Define the neighbors of current vertex item
+            vertex_neighbors = self.get_vertex(current_vertex_obj[0]).get_neighbors()
 
-            if current_vertex_obj not in vertex_target_list:
-                vertex_target_list.append(current_vertex_obj)
-                queue.append(current_vertex_obj)
+            # If the target distance is the same as the current vertex item, append item to new list
+            if current_vertex_obj[1] == target_distance:
+                vertex_target_list.append(current_vertex_obj[0])
+
+            # When checking the neighbors of current vertex item
+            for neighbor in vertex_neighbors:
+                if neighbor.get_id not in vertex_target_list:
+                    queue.append((neighbor.get_id(), current_vertex_obj[1] + 1))
+                    visit.append(neighbor.get_id())
 
         return vertex_target_list

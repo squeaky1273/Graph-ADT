@@ -11,3 +11,11 @@ Follow the instructions [here](https://make-school-courses.github.io/CS-2.2-Grap
 2. What is one application of Breadth-first Search (besides social networks)? Describe how BFS is used for that application. If you need some ideas, check out [this article](https://www.geeksforgeeks.org/applications-of-breadth-first-traversal/?ref=rp).
 
     One application of Breadth-first Search is a GPS. When using a GPS, the system is looking and nearbly by streets to fing the fastest path to your destinations. When it checks neigboring streets, it then looks at what is beyond there and if there are any potential obstacles that will require more maneuvering.
+
+__________________________________________
+
+1. Compare and contrast Breadth-first Search and Depth-first Search by providing one similarity and one difference.
+
+2. Explain why a Depth-first Search traversal does not necessarily find the shortest path between two vertices. What is one such example of a graph where a DFS search would not find the shortest path?
+
+3. Explain why we cannot perform a topological sort on a graph containing a cycle.

@@ -87,6 +87,9 @@ class Graph:
         vertex_id2 (string): The unique identifier of the second vertex.
         """
         self.__vertex_dict[vertex_id1].add_neighbor(self.__vertex_dict[vertex_id2])
+
+        if self.__is_directed is False:
+            self.__vertex_dict[vertex_id2].add_neighbor(self.__vertex_dict[vertex_id1])
         
     def get_vertices(self):
         """
@@ -192,7 +195,6 @@ class Graph:
         Arguments:
         start_id (string): The id of the start vertex.
         target_distance (integer): The distance from the start vertex we are looking for
-
         Returns:
         list<string>: All vertex ids that are `target_distance` away from the start vertex
         """
@@ -204,8 +206,8 @@ class Graph:
         queue.append((start_id, 0))
 
         # Take note of vetices that were already visited; don't visit again
-        visit = []
-        visit.append(start_id)
+        visit = set()
+        visit.add(start_id)
         
         # List of vertex items that are `target_distance` away from the start vertex
         vertex_target_list = []
@@ -223,8 +225,81 @@ class Graph:
 
             # When checking the neighbors of current vertex item
             for neighbor in vertex_neighbors:
-                if neighbor.get_id not in vertex_target_list:
+                if neighbor.get_id() not in visit:
                     queue.append((neighbor.get_id(), current_vertex_obj[1] + 1))
-                    visit.append(neighbor.get_id())
+                    visit.add(neighbor.get_id())
 
         return vertex_target_list
+
+    def is_bipartite(self):
+        """
+        Return True if the graph is bipartite, and False otherwise.
+        """
+        pass
+
+    def get_connected_components(self):
+        """
+        Return a list of all connected components, with each connected component
+        represented as a list of vertex ids.
+        """
+        pass
+
+    def find_path_dfs_iter(self, start_id, target_id):
+        """
+        Use DFS with a stack to find a path from start_id to target_id.
+        """
+        pass
+
+    def dfs_traversal(self, start_id):
+        """Visit each vertex, starting with start_id, in DFS order."""
+
+        visited = set() # set of vertices we've visited so far
+
+        def dfs_traversal_recursive(start_vertex):
+            print(f'Visiting vertex {start_vertex.get_id()}')
+
+            # recurse for each vertex in neighbors
+            for neighbor in start_vertex.get_neighbors():
+                if neighbor.get_id() not in visited:
+                    visited.add(neighbor.get_id())
+                    dfs_traversal_recursive(neighbor)
+            return
+
+        visited.add(start_id)
+        start_vertex = self.get_vertex(start_id)
+        dfs_traversal_recursive(start_vertex)
+
+    def contains_cycle(self):
+        """
+        Return True if the directed graph contains a cycle, False otherwise.
+        """
+        # psuedocode
+        # create a set: current_path = set()
+        # add vertex to current_path: current_path.add(vertex)
+        # look through the neighbors of vertex items
+            # if neighbor is in current_path:
+                # return True
+        # current_path.remove(vertex)
+        # return False
+        
+        # vertex = self.get_vertex
+        # current_path = set()
+        # current_path.add(vertex)
+        # for neighbor in self.get_vertices():
+        #     if neighbor in current_path:
+        #         return True
+        # current_path.remove(vertex)
+        # return False
+
+    def topological_sort(self):
+        """
+        Return a valid ordering of vertices in a directed acyclic graph.
+        If the graph contains a cycle, throw a ValueError.
+        """
+        # TODO: Create a stack to hold the vertex ordering.
+        # TODO: For each unvisited vertex, execute a DFS from that vertex.
+        # TODO: On the way back up the recursion tree (that is, after visiting a 
+        # vertex's neighbors), add the vertex to the stack.
+        # TODO: Reverse the contents of the stack and return it as a valid ordering.
+        pass
+

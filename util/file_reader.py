@@ -16,7 +16,7 @@ def read_graph_from_file(filename):
 
     # TODO: Use 'open' to open the file
     with open(filename) as f:
-        lines = f.readlines().strip('\n')
+        lines = next(f).strip('\n')
         
         if lines == "G":
             graph = Graph(is_directed=False)
@@ -25,11 +25,13 @@ def read_graph_from_file(filename):
         else:
             raise ValueError('Invalid graph type')
 
-        for _ in lines:
+        next_line = next(f).strip('\n').split(',')
+
+        for _ in next_line:
             graph.add_vertex(_)
 
-        for lines in f:
-            graph.add_edge(lines[1], lines[2])
+        for line in f:
+            graph.add_edge(line[1], line[3])
             
         return graph
 

@@ -198,4 +198,22 @@ class Graph:
         """
         if not self.contains_id(start_id):
             raise KeyError("One or both vertices are not in the graph!")
-        
+
+        starting_vertex = self.get_vertex(start_id)
+
+        queue = deque() 
+        queue.append(starting_vertex)
+
+        vertex_target_list = []
+
+        while queue:
+            current_vertex_obj = queue.pop() # vertex obj to visit next
+
+            if current_vertex_obj == target_distance:
+                return current_vertex_obj
+
+            if current_vertex_obj not in vertex_target_list:
+                vertex_target_list.append(current_vertex_obj)
+                queue.append(current_vertex_obj)
+
+        return vertex_target_list

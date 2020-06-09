@@ -15,20 +15,26 @@ def read_graph_from_file(filename):
     """
 
     # TODO: Use 'open' to open the file
-    f = open(filename)
-    f.read()
+    with open(filename) as f:
+        lines = f.readlines().strip('\n')
+        
+        if lines == "G":
+            graph = Graph(is_directed=False)
+        elif lines == "D":
+            graph = Graph()
+        else:
+            raise ValueError('Invalid graph type')
 
-    # TODO: Use the first line (G or D) to determine whether graph is directed 
-    # and create a graph object
+        for _ in lines:
+            graph.add_vertex(_)
 
-    # TODO: Use the second line to add the vertices to the graph
+        for lines in f:
+            graph.add_edge(lines[1], lines[2])
+            
+        return graph
 
-    # TODO: Use the 3rd+ line to add the edges to the graph
-
-    pass
 
 if __name__ == '__main__':
 
     graph = read_graph_from_file('test.txt')
-
     print(graph)

@@ -22,8 +22,7 @@ class Vertex(object):
         Parameters:
         vertex_obj (Vertex): An instance of Vertex to be stored as a neighbor.
         """
-        neighbor_id = vertex_obj.__id
-        vertex_obj = self.__neighbors_dict[neighbor_id]
+        self.__neighbors_dict[vertex_obj.__id] = vertex_obj
 
     def __str__(self):
         """Output the list of neighbors of this vertex."""
@@ -197,4 +196,6 @@ class Graph:
         Returns:
         list<string>: All vertex ids that are `target_distance` away from the start vertex
         """
-        pass
+        if not self.contains_id(start_id):
+            raise KeyError("One or both vertices are not in the graph!")
+        

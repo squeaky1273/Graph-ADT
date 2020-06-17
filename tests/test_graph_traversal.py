@@ -49,32 +49,32 @@ from graphs.graph import Graph
 #         self.assertTrue(graph.is_bipartite())
 
 
-# class TestConnectedComponents(unittest.TestCase):
-#     # @weight(10)
-#     def test_get_connected_components(self):
-#         """Get connected components of a graph."""
-#         graph = Graph(is_directed=False)
-#         vertex_a = graph.add_vertex('A')
-#         vertex_b = graph.add_vertex('B')
-#         vertex_c = graph.add_vertex('C')
-#         vertex_d = graph.add_vertex('D')
-#         vertex_d = graph.add_vertex('E')
-#         vertex_d = graph.add_vertex('F')
-#         graph.add_edge('A','B')
-#         graph.add_edge('A','C')
-#         graph.add_edge('B','C')
-#         graph.add_edge('D', 'E')
+class TestConnectedComponents(unittest.TestCase):
+    # @weight(10)
+    def test_get_connected_components(self):
+        """Get connected components of a graph."""
+        graph = Graph(is_directed=False)
+        vertex_a = graph.add_vertex('A')
+        vertex_b = graph.add_vertex('B')
+        vertex_c = graph.add_vertex('C')
+        vertex_d = graph.add_vertex('D')
+        vertex_d = graph.add_vertex('E')
+        vertex_d = graph.add_vertex('F')
+        graph.add_edge('A','B')
+        graph.add_edge('A','C')
+        graph.add_edge('B','C')
+        graph.add_edge('D', 'E')
 
-#         expected_components = [
-#             ['A', 'B', 'C'],
-#             ['D', 'E'],
-#             ['F']
-#         ]
-#         # sort each component for ease of comparison
-#         actual_components = graph.get_connected_components()
-#         actual_components = [sorted(comp) for comp in actual_components]
+        expected_components = [
+            ['A', 'B', 'C'],
+            ['D', 'E'],
+            ['F']
+        ]
+        # sort each component for ease of comparison
+        actual_components = graph.get_connected_components()
+        actual_components = [sorted(comp) for comp in actual_components]
 
-#         self.assertCountEqual(expected_components, actual_components)
+        self.assertCountEqual(expected_components, actual_components)
 
 
 # class TestFindPathDfs(unittest.TestCase):
@@ -133,28 +133,28 @@ from graphs.graph import Graph
 #         self.assertFalse(graph.contains_cycle())
 
 
-class TestTopologicalSort(unittest.TestCase):
-    # @weight(10)
-    def test_topological_sort(self):
-        graph = Graph(is_directed=True)
-        vertex_b = graph.add_vertex('B')
-        vertex_c = graph.add_vertex('C')
-        vertex_d = graph.add_vertex('D')
-        vertex_d = graph.add_vertex('E')
-        vertex_a = graph.add_vertex('A')
-        graph.add_edge('A','C')
-        graph.add_edge('B','D')
-        graph.add_edge('C','D')
-        graph.add_edge('D','E')
-        graph.add_edge('A','B')
+# class TestTopologicalSort(unittest.TestCase):
+#     # @weight(10)
+#     def test_topological_sort(self):
+#         graph = Graph(is_directed=True)
+#         vertex_b = graph.add_vertex('B')
+#         vertex_c = graph.add_vertex('C')
+#         vertex_d = graph.add_vertex('D')
+#         vertex_d = graph.add_vertex('E')
+#         vertex_a = graph.add_vertex('A')
+#         graph.add_edge('A','C')
+#         graph.add_edge('B','D')
+#         graph.add_edge('C','D')
+#         graph.add_edge('D','E')
+#         graph.add_edge('A','B')
 
-        possible_sorts = [
-            ['A', 'B', 'C', 'D', 'E'],
-            ['A', 'C', 'B', 'D', 'E']
-        ]
-        topo_sort = graph.topological_sort()
+#         possible_sorts = [
+#             ['A', 'B', 'C', 'D', 'E'],
+#             ['A', 'C', 'B', 'D', 'E']
+#         ]
+#         topo_sort = graph.topological_sort()
 
-        self.assertIn(topo_sort, possible_sorts)
+#         self.assertIn(topo_sort, possible_sorts)
         
 
 if __name__ == '__main__':

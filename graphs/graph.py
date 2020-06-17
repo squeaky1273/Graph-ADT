@@ -302,13 +302,12 @@ class Graph:
                     visited.append(neighbor.get_id())
                     connected_components.append(neighbor.get_id())
 
-            
             if len(visited) == len(keys):
-                break
+                return connected_components
             
-            unvisited = [vertex for vertex in keys if vertex not in visited]
+            not_visited = [vertex for vertex in keys if vertex not in visited]
 
-            current = random.choice(unvisited)
+            current = random.choice(not_visited)
 
             visited.append(current)
             queue.append(current)
@@ -407,9 +406,9 @@ class Graph:
   
     def contains_cycle(self): 
         visited = set()
-        keys = self.__vertex_dict.values()
+        values = self.__vertex_dict.values()
         stack = []
-        for vertex in keys: 
+        for vertex in values: 
             if vertex in visited:
                 return False
             else:
@@ -417,6 +416,21 @@ class Graph:
                     return True
         return False
 
+    def topological_helper(self, vertex, visited, stack): 
+  
+        # Mark the current node as visited. 
+        visited.add(vertex)
+        neighbors = vertex.get_neighbors()
+  
+        # Recur for all the vertices adjacent to this vertex 
+        for neighbor in neighbors: 
+            if neighbor not in visited: 
+                self.topological_helper(neighbor,visited,stack) 
+  
+        # Push current vertex to stack which stores result 
+        stack.append(vertex)
+        return stack
+  
     def topological_sort(self):
         """
         Return a valid ordering of vertices in a directed acyclic graph.
@@ -426,18 +440,19 @@ class Graph:
         # TODO: For each unvisited vertex, execute a DFS from that vertex.
         # TODO: On the way back up the recursion tree (that is, after visiting a 
         # vertex's neighbors), add the vertex to the stack.
-        # TODO: Reverse the contents of the stack and return it as a valid ordering.
+        # TODO: Reverse the contents of the stack and return it as a valid ordering. 
+        # Mark all the vertices as not visited 
 
-        indegree = {}
-
-        for vertex in self.get_vertices():
-            for neighbor in vertex.get_neighbors():
-                neighbor_id = neighbor.get_id()
-                if neighbor_id in indegree:
-                    neighbor_id += 1
-                else:
-                    neighbor_id = 1
-                # indegree[neighbor]
-
-        return indegree
+        visited = set()
+        stack = []
+        values = self.__vertex_dict.values()
+  
+        for vertex in values: 
+            if vertex not in visited: 
+                self.topological_helper(vertex, visited, stack) == True 
+  
+        solution = list()
+        for _ in range(len(self.__vertex_dict)):
+            solution.append(stack.pop().get_id())
+        return solution
 

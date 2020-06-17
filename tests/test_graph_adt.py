@@ -1,7 +1,7 @@
 import unittest
 from graphs.graph import Graph
 from util.file_reader import read_graph_from_file
-
+# from gradescope_utils.autograder_utils.decorators import weight, visibility
 
 class TestGraph(unittest.TestCase):
 
@@ -96,7 +96,6 @@ class TestReadGraphFromFile(unittest.TestCase):
 
         vertices_3_away = graph.find_vertices_n_away('A', 3)
         self.assertEqual(vertices_3_away, ['F'])
-
 
 if __name__ == '__main__':
     unittest.main()

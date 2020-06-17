@@ -16,6 +16,12 @@ __________________________________________
 
 1. Compare and contrast Breadth-first Search and Depth-first Search by providing one similarity and one difference.
 
+    One similarity is that both BFS and DFS use the neighbor components when visiting and moving on. One difference is that BFS uses the queues to look for the shortest path and DFS uses Stacks as it's data structure. DFS searches most ro all of the possible paths.
+
 2. Explain why a Depth-first Search traversal does not necessarily find the shortest path between two vertices. What is one such example of a graph where a DFS search would not find the shortest path?
 
+    DFS goes outward to the farthest vertex and makes it's way to unvisited vertices. An example is a maze.
+
 3. Explain why we cannot perform a topological sort on a graph containing a cycle.
+
+    A topological sort is a linear ordering of vertices and return them in order. A graph that has a cycle doesn't end. There is no end point.

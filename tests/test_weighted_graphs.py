@@ -34,22 +34,22 @@ class TestGraph(unittest.TestCase):
 
         return graph
 
-    def test_mst_kruskal(self):
-        """Create a weighted graph."""
-        graph = self.make_large_graph()
+    # def test_mst_kruskal(self):
+    #     """Create a weighted graph."""
+    #     graph = self.make_large_graph()
 
-        expected_mst = [
-            ('A', 'B', 4),
-            ('A', 'C', 8),
-            ('C', 'E', 4),
-            ('C', 'F', 1),
-            ('D', 'E', 2),
-            ('D', 'G', 7),
-            ('F', 'H', 2),
-            ('G', 'J', 9)
-        ]
+    #     expected_mst = [
+    #         ('A', 'B', 4),
+    #         ('A', 'C', 8),
+    #         ('C', 'E', 4),
+    #         ('C', 'F', 1),
+    #         ('D', 'E', 2),
+    #         ('D', 'G', 7),
+    #         ('F', 'H', 2),
+    #         ('G', 'J', 9)
+    #     ]
 
-        self.assertEqual(sorted(graph.minimum_spanning_tree_kruskal()), expected_mst)
+    #     self.assertEqual(sorted(graph.minimum_spanning_tree_kruskal()), expected_mst)
 
     # def test_mst_prim(self):
     #     """Create a weighted graph."""
@@ -61,13 +61,13 @@ class TestGraph(unittest.TestCase):
     #         graph.minimum_spanning_tree_prim(), expected_mst_weight)
 
 
-    # def test_shortest_path(self):
-    #     graph = self.make_large_graph()
+    def test_shortest_path(self):
+        graph = self.make_large_graph()
 
-    #     expected_shortest_path = 21
+        expected_shortest_path = 21
 
-    #     self.assertEqual(
-    #         graph.find_shortest_path('A', 'J'), expected_shortest_path)
+        self.assertEqual(
+            graph.find_shortest_path('A', 'J'), expected_shortest_path)
 
 if __name__ == '__main__':
     unittest.main()

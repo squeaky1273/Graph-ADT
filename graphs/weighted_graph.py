@@ -202,41 +202,39 @@ class WeightedGraph(Graph):
         Use Dijkstra's Algorithm to return the total weight of the shortest path
         from a start vertex to a destination.
         """
-        # TODO: Create a dictionary `vertex_to_distance` and initialize all
-        # vertices to INFINITY - hint: use `float('inf')`
-        vertex_to_distance = {vertex: float('inf') for vertex in self.get_vertices()}
-        vertex_to_distance[start_id] = 0
+        vertex_to_distance = dict()
 
-        distance = [(0, start_id)]
+        for vertex_obj in self.vertex_dict.values():
+            vertex_to_distance[vertex_obj] = float('inf')
 
-        while len(distance) > 0:
-            current_distance, current_vertex = vertex_to_distance.pop()
+        start_vertex = self.vertex_dict[start_id]
+        vertex_to_distance[start_vertex] = 0
+
+        while len(vertex_to_distance) > 0:
+
+            min_distance = min(vertex_to_distance.values())
             min_vertex = None
+
+            for vertex in vertex_to_distance:
+                if vertex_to_distance[vertex] == min_distance:
+                    min_vertex = vertex
+
+            weight_of_neighbor = (
+                list(min_vertex.neighbors_dict.values())
+            )
 
             if min_vertex.id == target_id:
                 return vertex_to_distance[min_vertex]
 
-            if current_distance > vertex_to_distance[current_vertex]:
-                continue
-
-            neighbor_weight = (
-                list(min_vertex.neighbors_dict.values())
-            )
-
-            for neighbor, weight in neighbor_weight:
-                distance = current_distance[min_vertex] + weight
-
-                if distance < vertex_to_distance[neighbor]:
-                    vertex_to_distance[neighbor] = distance
+            for neighbor, weight in weight_of_neighbor:
+                if neighbor in vertex_to_distance:
+                    current_distance = vertex_to_distance[neighbor]
+                    new_distance = weight + vertex_to_distance[min_vertex]
+                    if new_distance < current_distance:
+                        vertex_to_distance[neighbor] = new_distance
 
             del vertex_to_distance[min_vertex]
-
-        # 1. Get the minimum-distance remaining vertex, remove it from the
-        #    dictionary. If it is the target vertex, return its distance.
-        # 2. Update that vertex's neighbors by adding the edge weight to the
-        #    vertex's distance, if it is lower than previous.
-
-        # TODO: Return None if target vertex not found.
+            
         return None
 
     def floyd_warshall(self):
